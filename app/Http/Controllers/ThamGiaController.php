@@ -23,7 +23,7 @@ class ThamGiaController extends Controller
             $tg->tai_khoan_id=auth()->user()->id;
             $tg->lop_id=$ml->id;
             $tg->save();
-            return redirect()->route('ds-lop-hoc')->withErrors(['failed'=>"Thêm thành công"]);
+            return redirect()->route('ds-lop-hoc')->withErrors(['passed'=>"Thêm thành công"]);
         }
         return back()->withErrors(['failed'=>"Bạn đã là thành viên của lớp"]);
     }
@@ -50,7 +50,7 @@ class ThamGiaController extends Controller
             $tg->tai_khoan_id=$tk->id;
             $tg->lop_id=$id;
             $tg->save();
-            return redirect()->route('chi-tiet-lop', ['id'=>$id])->withErrors(['failed'=>"Thêm thành công"]);
+            return redirect()->route('chi-tiet-lop', ['id'=>$id])->withErrors(['passed'=>"Thêm thành công"]);
         }
         return back()->withErrors(['failed'=>"Sinh viên đã được thêm vào lớp trước đó"]);
     }

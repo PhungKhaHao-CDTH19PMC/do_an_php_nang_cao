@@ -28,15 +28,9 @@
                         <div class="col-sm-6 col-sm-offset-3 form-box">
                         	<div class="form-top">
                         		<div class="form-top-left">
-                                @if ($errors->any())
-                                    <div class="alert alert-success">
-                                    <ul>
-                                    @foreach($errors->all() as $error)
-                                    <li>{{$error }}</li>
-                                    @endforeach
-                                    </ul>
-                                    </div>
-                                @endif
+                                @error('passed')
+                                    <div class="alert alert-success">{{$message}}</div>
+                                @enderror
                         			<h3>Đăng kí</h3>
                             		<p>Nhập vào biểu mẫu bên dưới để đăng kí</p>
                                     <a href="{{route('dang-nhap')}}">Trở về đăng nhập</a>
@@ -63,25 +57,46 @@
                             </div>
 			                    	<div class="form-group">
 			                        	<input  style="height: 45px; border: 3px solid #ddd;background: #f8f8f8" name="username" placeholder="Username..." class="form-control"  >
-			                        </div>
+                                        @error('username')
+                                            <span style="color:red;">{{$message}}</span>
+                                        @enderror
+                                    </div>
 			                        <div class="form-group">
 			                        	<input style="height: 45px; border: 3px solid #ddd;background: #f8f8f8" name="password" placeholder="Password..." class="form-control" >
-									</div>
+                                        @error('password')
+                                            <span style="color:red;">{{$message}}</span>
+                                        @enderror
+                                    </div>
 									<div class="form-group">
 			                        	<input style="height: 45px; border: 3px solid #ddd;background: #f8f8f8" name="ho_ten" placeholder="Họ tên" class="form-control"  >
-			                        </div>
+                                        @error('ho_ten')
+                                            <span style="color:red;">{{$message}}</span>
+                                        @enderror
+                                    </div>
 									<div class="form-group">
 			                        	<input style="height: 45px; border: 3px solid #ddd;background: #f8f8f8" type="date" name="ngay_sinh" class="form-control" >
-			                        </div>
+                                        @error('ngay_sinh')
+                                            <span style="color:red;">{{$message}}</span>
+                                        @enderror
+                                    </div>
 									<div class="form-group">
 			                        	<input style="border: 3px solid #ddd; height:45px;background: #f8f8f8" type="email" name="email" placeholder="Email..." class="form-control" >
-			                        </div>
+                                        @error('email')
+                                            <span style="color:red;">{{$message}}</span>
+                                        @enderror
+                                    </div>
 									<div class="form-group">
 			                        	<input style="height: 45px; border: 3px solid #ddd;background: #f8f8f8" name="sdt" placeholder="Sdt..." class="form-control"  >
-			                        </div>
+                                        @error('sdt')
+                                            <span style="color:red;">{{$message}}</span>
+                                        @enderror
+                                    </div>
 									<div class="form-group">
 			                        	<input type="file" name="hinh_anh" class="form-control"  >
-			                        </div>
+                                        @error('hinh_anh')
+                                            <span style="color:red;">{{$message}}</span>
+                                        @enderror
+                                    </div>
 			                        <button type="submit" class="btn">Đăng kí!</button>
 			                    </form>
 		                    </div>

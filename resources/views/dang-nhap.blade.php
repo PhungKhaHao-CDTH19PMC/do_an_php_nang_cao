@@ -49,15 +49,9 @@
 			                        <div class="form-group">
 			                        	<input type="password" name="password" placeholder="Password..." class="form-password form-control" id="form-password">
 			                        </div>
-                                    @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                    <ul>
-                                    @foreach($errors->all() as $error)
-                                    <li>{{$error }}</li>
-                                    @endforeach
-                                    </ul>
-                                    </div>
-                                    @endif
+                                    @error('failed')
+                                    <div class="alert alert-danger">{{$message}}</div>
+                                    @enderror
                                     @if (session('error'))
                                     <div class="alert alert-danger">
                                         {{ session('error') }}

@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>Elearning</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('assets2/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets2/vendors/css/vendor.bundle.base.css')}}">
@@ -108,7 +108,8 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name">{{auth()->user()->username}}</p>
+                    <img class="img-xs rounded-circle" src="{{URL::to('/')}}/images/{{auth()->user()->hinh_anh}}" alt="">
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name">{{auth()->user()->ho_ten}}</p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
                 </a>

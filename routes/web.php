@@ -8,7 +8,7 @@ use App\Http\Controllers\DangNhapController;
 use App\Http\Controllers\DangKiController;
 use App\Http\Controllers\DanhSachLopHocController;
 use App\Http\Controllers\DangXuatController;
-
+use App\Http\Controllers\PostController;
 
 
 
@@ -39,12 +39,17 @@ Route::middleware('auth')->group(function(){
     Route::post('/tai_khoan/cap-nhat/{id}',[TaiKhoanController::class, 'capNhatTaiKhoan'])->name('xl-cap-nhat-tai-khoan');
     Route::get('/tai-khoan/dat-lai/{id}',[TaiKhoanController::class, 'formDatLaiMatKhau'])->name('dat-lai-mat-khau');
     Route::post('/tai_khoan/dat-lai/{id}',[TaiKhoanController::class, 'datLaiMatKhau'])->name('xl-dat-lai-mat-khau');
+    Route::get('/chi-tiet-lop/{id}',[LopController::class, 'chiTietLop'])->name('chi-tiet-lop');
+    Route::get('/bai-viet/lop',[PostController::class, 'layDanhSach'])->name('ds-bai-viet');
+    
 });
 
 
 Route::group(['middleware' => ['auth','sinhvien']], function () {
     Route::get('/danh-sach-lop-hoc',[TaiKhoanController::class, 'dsLopHoc'])->name('ds-lop-hoc');
     Route::post('/sinh-vien/them-lop',[ThamGiaController::class, 'xuLyThemLop'])->name('xl-them-lop-hoc');
+    Route::get('/sinh-vien/lop/roi-khoi/{id}',[TaiKhoanController::class, 'formXoaLophoc'])->name('roi-khoi-lop');
+    Route::post('/sinh-vien/lop/roi-khoi/{id}',[TaiKhoanController::class, 'xoaLophoc'])->name('xl-roi-khoi-lop');
 });
 
 Route::group(['middleware' => ['auth','giaovien']], function () {
@@ -55,10 +60,12 @@ Route::group(['middleware' => ['auth','giaovien']], function () {
     Route::post('/giao-vien/lop/xoa/{id}',[LopController::class, 'xoaLop'])->name('xl-xoa-lop');
     Route::get('/giao-vien/them-lop',[LopController::class, 'themLop'])->name('them-lop');
     Route::post('/giao-vien/them-lop',[LopController::class, 'xuLyThemLop'])->name('xl-them-lop-day');
+    Route::get('/giao-vien/xoa-sinh-vien/{id}/{idlop}',[TaiKhoanController::class, 'formXoaSinhVien'])->name('xoa-sinh-vien');
+    Route::post('/giao-vien/xoa-sinh-vien/{id}/{idlop}',[TaiKhoanController::class, 'xoaSinhVien'])->name('xl-xoa-sinh-vien');
+    
 });
 
 Route::group(['middleware' => ['auth','both']], function () {
-    Route::get('/chi-tiet-lop/{id}',[LopController::class, 'chiTietLop'])->name('chi-tiet-lop');
     Route::post('/giao-vien/them/sinh-vien/{id}',[ThamGiaController::class, 'xuLyThemHocSinh'])->name('xl-them-sinh-vien');
 });
 

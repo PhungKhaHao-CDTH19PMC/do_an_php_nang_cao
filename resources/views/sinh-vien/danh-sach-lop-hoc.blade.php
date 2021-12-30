@@ -49,17 +49,13 @@
             }
            </style>
       <div class="content-wrapper">
-      <div class="page-header">
-            @if ($errors->any())
-          <div class="alert alert-danger">
-            <ul>
-              @foreach($errors->all() as $error)
-              <li>{{$error }}</li>
-              @endforeach
-            </ul>
-          </div>
-        @endif
-            </div>
+            @error('failed')
+              <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            @error('passed')
+              <div class="alert alert-success">{{$message}}</div>
+            @enderror
+            <h4>Danh sách lớp</h4>
             <div class="row">
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
@@ -88,9 +84,11 @@
                <div class="card-footer bg-transparent ">
                   <div class="d-flex flex-row-reverse bd-highlight">
                     <div class="p-2 bd-highlight bg-shadow">
-                      <a href="#">  <i class="fal fa-info-circle"></i></a>
+                      <a href="{{route('chi-tiet-lop',['id' => $ds->id])}}">  <i class="fal fa-info-circle"></i></a>
                     </div>
-                    
+                    <div class="p-2 bd-highlight bg-shadow">
+                      <a href="{{route('roi-khoi-lop',['id' => $ds->id])}}">   <i class="far fa-trash"></i></a>
+                    </div>
                  </div>
                </div>
               </div>
