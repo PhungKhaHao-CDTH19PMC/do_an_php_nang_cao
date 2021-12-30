@@ -21,4 +21,8 @@ class TaiKhoan extends Authenticatable
     {
         return $this->belongsTo('App\Models\PhanQuyen');
     }
+    public function hinhDaiDien()
+    {
+        return $this->hasOne('App\Models\Lop');
+    }
 }

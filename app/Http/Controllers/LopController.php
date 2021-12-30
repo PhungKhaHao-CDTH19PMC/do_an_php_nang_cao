@@ -73,8 +73,11 @@ class LopController extends Controller
             {
                 return redirect()->route('ds-lop-day')->withErrors(['failed'=>"Lớp không tồn tại"]);
             }
-            else{
+            elseif(auth()->user()->phan_quyen_id==3){
                 return redirect()->route('ds-lop')->withErrors(['failed'=>"Lớp không tồn tại"]);
+            }
+            else{
+                return redirect()->route('ds-lop-hoc')->withErrors(['failed'=>"Lớp không tồn tại"]);
             }
          }
          else
@@ -87,8 +90,16 @@ class LopController extends Controller
                 }
                 return view('giao-vien/chi-tiet-lop', compact('lop'));
             }
-            else{
+            elseif(auth()->user()->phan_quyen_id==3){
                return view('quan-tri-vien/chi-tiet-lop', compact('lop'));
+            }
+            else{
+                $kt=ThamGia::where('tai_khoan_id',auth()->user()->id)->where('lop_id',$id)->first();
+                if($kt)
+                {
+                    return view('sinh-vien/chi-tiet-lop', compact('lop'));
+                }
+                return redirect()->route('ds-lop-hoc')->withErrors(['failed'=>"Đây không phải lớp bạn đang học"]);
             }
          }
     }
@@ -142,7 +153,7 @@ class LopController extends Controller
             $lop->ten_lop= $req->ten_lop;
             $lop->save();
         }
-        return back()->withErrors(['failed'=>"Cập nhật thành công"]);
+        return back()->withErrors(['passed'=>"Cập nhật thành công"]);
     }
 
     public function formXoaLop($id)
@@ -175,9 +186,9 @@ class LopController extends Controller
         if(empty($tg))
         {
             $lop->delete();
-            return redirect()->route('ds-lop-day');
+            return redirect()->route('ds-lop-day')->withErrors(['passed'=>"Đã xóa lớp"]);
         }
-        return back()->withErrors(['failed'=>"Không thể xóa lớp này"]);
+        return redirect()->route('ds-lop-day')->withErrors(['failed'=>"Không thể xóa lớp này"]);
     }
     
 }

@@ -1,4 +1,4 @@
-@extends('quan-tri-vien.main')
+@extends('giao-vien.main')
 
 @section('main-content')
 <div class="content-wrapper">
@@ -6,18 +6,14 @@
             @error('passed')
               <div class="alert alert-danger">{{$message}}</div>
             @enderror
-            <h4>Xóa tài khoản</h4>
+            <h4>Xóa sinh viên</h4>
             </div>
             <div class="row">
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <form class="forms-sample" action="{{ route('xl-xoa-tai-khoan',['id' => $tk->id])}}" method="post" >
+                    <form class="forms-sample" action="{{route('xl-xoa-sinh-vien',['id' => $tk->id,'idlop' => $lop->id])}}" method="post" >
                       @csrf
-                      <div class="form-group">
-                        <label for="exampleInputUsername1">Username</label>
-                        <input style="color:black;"type="text" class="form-control" id="exampleInputUsername1" name="username" value="{{$tk->username}}" readonly>
-                      </div>
                       <div class="form-group">
                         <label for="exampleInputUsername1">Họ Tên</label>
                         <input style="color:black;" type="text" class="form-control" id="exampleInputUsername1" placeholder="Họ tên " name="ho_ten" value="{{$tk->ho_ten}}" readonly>

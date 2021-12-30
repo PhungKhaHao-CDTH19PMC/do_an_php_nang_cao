@@ -74,7 +74,7 @@ class TaiKhoanController extends Controller
         $storedPath = $image->storeAs('images', $file_name);
         $tk->hinh_anh=$file_name;
         $tk->save();
-        return back()->withErrors(['failed'=>"Đăng kí thành công"]);
+        return back()->withErrors(['passed'=>"Đăng kí thành công"]);
         
     }
 
@@ -167,7 +167,7 @@ class TaiKhoanController extends Controller
             $tk->sdt= $req->sdt;
             $tk->save();
         }
-        return back()->withErrors(['failed'=>"Cập nhật thành công"]);
+        return back()->withErrors(['passed'=>"Cập nhật thành công"]);
     }
 
     public function taoTaiKhoan()
@@ -194,7 +194,7 @@ class TaiKhoanController extends Controller
         $tk->hinh_anh=$file_name;
 
         $tk->save();
-        return back()->withErrors(['failed'=>"Đăng kí thành công"]);
+        return back()->withErrors(['passed'=>"Đăng kí thành công"]);
         
     }
 
@@ -278,13 +278,45 @@ class TaiKhoanController extends Controller
         }
         $tk->password= Hash::make($req->mat_khau_moi);
         $tk->save();
-        return back()->withErrors(['failed'=>"Cập nhật mật khẩu thành công"]);
+        return back()->withErrors(['passed'=>"Cập nhật mật khẩu thành công"]);
     }
 
     public function dsLopHoc()
     {
         $sinhVien=TaiKhoan::find(auth()->user()->id);
         return view('sinh-vien/danh-sach-lop-hoc', compact('sinhVien'));
+    }
+
+    public function formXoaLophoc($id)
+    {
+        
+        $lop=Lop::find($id);
+        if($lop==null)
+        {
+            return redirect()->route('ds-lop-hoc')->withErrors(['failed'=>"Không tìm thấy lớp này"]);
+        }
+        $kt=ThamGia::where('tai_khoan_id',auth()->user()->id)->where('lop_id',$lop->id)->first();
+        if($kt)
+        {
+            return view('sinh-vien/xoa-lop', compact('lop'));
+        }
+        return redirect()->route('ds-lop-hoc')->withErrors(['failed'=>"Bạn không phải thành viên của lớp"]);
+    }
+    
+    function xoaLophoc($id)
+    {
+        $lop=Lop::find($id);
+        if($lop==null)
+        {
+            return redirect()->route('ds-lop-hoc')->withErrors(['failed'=>"Không tìm thấy lớp này"]);
+        }
+        $kt=ThamGia::where('tai_khoan_id',auth()->user()->id)->where('lop_id',$lop->id)->first();
+        if($kt)
+        {
+            $kt->delete();
+            return redirect()->route('ds-lop-hoc')->withErrors(['passed'=>"Đã rời khỏi lớp học"]);
+        }
+        return redirect()->route('ds-lop-hoc')->withErrors(['failed'=>"Bạn không phải thành viên của lớp"]);
     }
     
     public function dsTaiKhoan()
@@ -299,7 +331,7 @@ class TaiKhoanController extends Controller
         $tk=TaiKhoan::find($id);
         if($tk==null)
         {
-            return back()->withErrors(['failed'=>"Không tìm thấy tài khoản này"]);
+            return redirect()->route('ds-tai-khoan')->withErrors(['failed'=>"Không tìm thấy tài khoản này"]);
         }
         return view('quan-tri-vien/cap-nhat-tai-khoan-qtv', compact('tk','quyen'));     
     }
@@ -309,7 +341,7 @@ class TaiKhoanController extends Controller
         $tk=TaiKhoan::find($id);
         if($tk==null)
         {
-            return back()->withErrors(['failed'=>"Không tìm thấy tài khoản này"]);
+            return back()->route('ds-tai-khoan')->withErrors(['failed'=>"Không tìm thấy tài khoản này"]);
         }
         $tk->phan_quyen_id= $req->phan_quyen;
         $tk->ho_ten= $req->ho_ten;
@@ -317,7 +349,7 @@ class TaiKhoanController extends Controller
         $tk->email= $req->email;
         $tk->sdt= $req->sdt;
         $tk->save();
-        return redirect()->route('ds-tai-khoan');
+        return redirect()->route('ds-tai-khoan')->withErrors(['passed'=>"Cập nhật thành công"]);
     }
     public function formXoaTaiKhoan($id)
     {
@@ -325,7 +357,7 @@ class TaiKhoanController extends Controller
         $tk=TaiKhoan::find($id);
         if($tk==null)
         {
-            return back()->withErrors(['failed'=>"Không tìm thấy tài khoản này"]);
+            return redirect()->route('ds-tai-khoan')->withErrors(['failed'=>"Không tìm thấy tài khoản này"]);
         }
         return view('quan-tri-vien/xoa-tai-khoan', compact('tk','quyen'));     
     }
@@ -335,7 +367,7 @@ class TaiKhoanController extends Controller
         $tk=TaiKhoan::find($id);
         if($tk==null)
         {
-            return back()->withErrors(['failed'=>"Không tìm thấy tài khoản này"]);
+            return redirect()->route('ds-tai-khoan')->withErrors(['failed'=>"Không tìm thấy tài khoản này"]);
         }
         $tg=ThamGia::where('tai_khoan_id',$tk->id)->get();
         if($tg)
@@ -348,6 +380,54 @@ class TaiKhoanController extends Controller
             $lop=Lop::where('tai_khoan_id',$tk->id)->delete();
         }
         $tk->delete();
-        return redirect()->route('ds-tai-khoan');
+        return redirect()->route('ds-tai-khoan')->withErrors(['passed'=>"Xóa thành công"]);
+    }
+    public function formXoaSinhVien($id,$idlop)
+    {
+        $tk=TaiKhoan::find($id);
+        if($tk==null)
+        {
+            return redirect()->route('ds-lop-day')->withErrors(['failed'=>"Không tìm thấy tài khoản này"]);
+        }
+        $lop=Lop::find($idlop);
+        if($lop==null)
+        {
+            return redirect()->route('ds-lop-day')->withErrors(['failed'=>"Không tìm thấy lớp này"]);
+        }
+        if(auth()->user()->id!=$lop->tai_khoan_id)
+        {
+            return redirect()->route('ds-lop-day')->withErrors(['failed'=>"Đây không phải lớp bạn giảng dạy"]);
+        }
+        $tg=ThamGia::where('tai_khoan_id',$tk->id)->where('lop_id',$idlop)->first();
+        if($tg)
+        {
+            return view('giao-vien/xoa-sinh-vien', compact('tk','lop'));  
+        }
+        return redirect()->route('chi-tiet-lop', ['id'=>$lop->id])->withErrors(['failed'=>"Sinh viên không học tại lớp"]);
+    }
+
+    public function xoaSinhVien($id,$idlop)
+    {
+        $tk=TaiKhoan::find($id);
+        if($tk==null)
+        {
+            return redirect()->route('ds-lop-day')->withErrors(['failed'=>"Không tìm thấy tài khoản này"]);
+        }
+        $lop=Lop::find($idlop);
+        if($lop==null)
+        {
+            return redirect()->route('ds-lop-day')->withErrors(['failed'=>"Không tìm thấy lớp này"]);
+        }
+        if(auth()->user()->id!=$lop->tai_khoan_id)
+        {
+            return redirect()->route('ds-lop-day')->withErrors(['failed'=>"Đây không phải lớp bạn giảng dạy"]);
+        }
+        $tg=ThamGia::where('tai_khoan_id',$tk->id)->where('lop_id',$idlop)->first();
+        if($tg)
+        {
+            $tg=ThamGia::where('tai_khoan_id',$tk->id)->delete();
+            return redirect()->route('chi-tiet-lop', ['id'=>$lop->id])->withErrors(['passed'=>"Xóa thành công"]);
+        }
+        return redirect()->route('chi-tiet-lop', ['id'=>$lop->id])->withErrors(['failed'=>"Sinh viên không học tại lớp"]);
     }
 }

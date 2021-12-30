@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ThamGia extends Model
 {
     use HasFactory;
-    use SoftDeletes;
     protected $table='tham_gia';
 
 }

@@ -49,18 +49,13 @@
             }
            </style>
      <div class="content-wrapper">
-            <div class="page-header">
-            @if ($errors->any())
-          <div class="alert alert-danger">
-            <ul>
-              @foreach($errors->all() as $error)
-              <li>{{$error }}</li>
-              @endforeach
-            </ul>
-          </div>
-        @endif
-             
-            </div>
+            @error('failed')
+              <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            @error('passed')
+              <div class="alert alert-success">{{$message}}</div>
+            @enderror
+            <h4>Danh sách lớp</h4>
             <div class="row">
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">

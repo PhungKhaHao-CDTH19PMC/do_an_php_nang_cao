@@ -2,18 +2,13 @@
 
 @section('main-content')
 <div class="content-wrapper">
-            <div class="page-header">
-            @if ($errors->any())
-          <div class="alert alert-danger">
-            <ul>
-              @foreach($errors->all() as $error)
-              <li>{{$error }}</li>
-              @endforeach
-            </ul>
-          </div>
-        @endif
-              
-            </div>
+            @error('failed')
+              <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            @error('passed')
+              <div class="alert alert-success">{{$message}}</div>
+            @enderror
+            <h4>Cập nhật lớp</h4>
             <div class="row">
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
@@ -22,7 +17,7 @@
                       @csrf
                       <div class="form-group">
                         <label for="exampleInputUsername1">Tên lớp học</label>
-                        <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Tên lớp " name="ten_lop" value="{{$lop->ten_lop}}">
+                        <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Tên lớp " name="ten_lop" value="{{$lop->ten_lop}}" required>
                       </div>
                       <div class="form-group">
                         <label for="exampleInputUsername1">Hình ảnh (Có thể không chọn)</label>

@@ -48,15 +48,10 @@
            </style>
       <div class="content-wrapper">
             <div class="page-header">
-              @if ($errors->any())
-          <div class="alert alert-danger">
-            <ul>
-              @foreach($errors->all() as $error)
-              <li>{{$error }}</li>
-              @endforeach
-            </ul>
-          </div>
-        @endif
+            @error('failed')
+              <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            <h4>Danh sách lớp</h4>
               
             </div>
             <div class="row">
@@ -72,6 +67,10 @@
                   <img src="{{URL::to('/')}}/images/{{$ds->hinh_anh}}" alt="">
                 </div>
                 <div class="card-body text-success">
+                    @php
+                      $gv= App\Models\TaiKhoan::find($ds->tai_khoan_id);
+                    @endphp
+                  <h5 class="card-title">Giáo viên: {{$gv->ho_ten}}</h5>
                   <h5 class="card-title">Tên lớp: {{$ds->ten_lop}}</h5>
                   <p class="card-text">Mã lớp: {{$ds->ma_lop}}</p>
                 </div>

@@ -3,16 +3,13 @@
 @section('main-content')
 <div class="content-wrapper">
             <div class="page-header">
-            @if ($errors->any())
-          <div class="alert alert-danger">
-            <ul>
-              @foreach($errors->all() as $error)
-              <li>{{$error }}</li>
-              @endforeach
-            </ul>
-          </div>
-        @endif
-              
+            @error('failed')
+              <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            @error('passed')
+              <div class="alert alert-success">{{$message}}</div>
+            @enderror
+            <h4>Đặt lại mật khẩu</h4>
             </div>
             <div class="row">
               <div class="col-12 grid-margin stretch-card">

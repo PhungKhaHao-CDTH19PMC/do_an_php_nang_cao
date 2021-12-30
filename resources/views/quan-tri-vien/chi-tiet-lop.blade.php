@@ -4,17 +4,21 @@
 @section('main-content')
 <div class="content-wrapper">
             <div class="page-header">
-            @if ($errors->any())
-          <div class="alert alert-danger">
-            <ul>
-              @foreach($errors->all() as $error)
-              <li>{{$error }}</li>
-              @endforeach
-            </ul>
-          </div>
-        @endif
-             
+            <h3 style="color:#007bff;" class="page-title"> Tên lớp: {{ $lop->ten_lop}} </h3>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Mọi người</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"><a href="#">Bài viết</a></li>
+                </ol>
+              </nav>
             </div>
+            @error('failed')
+              <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            @error('passed')
+              <div class="alert alert-success">{{$message}}</div>
+            @enderror
+             
             <div class="row">
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
@@ -32,6 +36,32 @@
               </div>
             </div>
         </form>
+        <h3>Giảng viên</h3>
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Họ tên</th>
+                    <th scope="col">Ngày sinh</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Số điện thoại</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    @php
+                      $gv= App\Models\TaiKhoan::find($lop->tai_khoan_id);
+                    @endphp
+                    <td>{{ $gv->id}}</td>
+                    <td>{{ $gv->ho_ten}}</td>
+                    <td>{{ $gv->ngay_sinh}}</td>
+                    <td>{{ $gv->email}}</td>
+                    <td>{{ $gv->sdt}}</td>
+                </tr>
+                </tbody>
+              </table>
+              <br/>
+          <h3>Sinh viên</h3>
           <table class="table">
                 <thead>
                   <tr>
