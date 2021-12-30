@@ -4,7 +4,7 @@
 <div class="content-wrapper">
             <div class="page-header">
             @if ($errors->any())
-          <div class="alert alert-danger">
+          <div class="alert alert-success">
             <ul>
               @foreach($errors->all() as $error)
               <li>{{$error }}</li>
@@ -22,7 +22,7 @@
                       @csrf
                       <div class="form-group">
                         <label for="exampleInputUsername1">Tên lớp học</label>
-                        <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Tên lớp " name="ten_lop" value="{{$lop->ten_lop}}">
+                        <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Tên lớp " required name="ten_lop" value="{{$lop->ten_lop}}">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputUsername1">Hình ảnh (Có thể không chọn)</label>

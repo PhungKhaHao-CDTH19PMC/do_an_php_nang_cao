@@ -142,7 +142,7 @@ class LopController extends Controller
             $lop->ten_lop= $req->ten_lop;
             $lop->save();
         }
-        return back()->withErrors(['failed'=>"Cập nhật thành công"]);
+        return redirect()->route('ds-lop-day');
     }
 
     public function formXoaLop($id)
