@@ -16,4 +16,9 @@ class Lop extends Model
     {
         return $this->belongsToMany('App\Models\TaiKhoan','tham_gia');
     }
+
+    public function hangCho()
+    {
+        return $this->belongsToMany('App\Models\TaiKhoan','hang_cho');
+    }
 }

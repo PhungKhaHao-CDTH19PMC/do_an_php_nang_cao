@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function(){
 
 Route::group(['middleware' => ['auth','sinhvien']], function () {
     Route::get('/danh-sach-lop-hoc',[TaiKhoanController::class, 'dsLopHoc'])->name('ds-lop-hoc');
-    Route::post('/sinh-vien/them-lop',[ThamGiaController::class, 'xuLyThemLop'])->name('xl-them-lop-hoc');
+    Route::post('/sinh-vien/them-lop',[ThamGiaController::class, 'xuLyHangCho'])->name('xl-them-lop-hoc');
     Route::get('/sinh-vien/lop/roi-khoi/{id}',[TaiKhoanController::class, 'formXoaLophoc'])->name('roi-khoi-lop');
     Route::post('/sinh-vien/lop/roi-khoi/{id}',[TaiKhoanController::class, 'xoaLophoc'])->name('xl-roi-khoi-lop');
 });
@@ -69,6 +69,10 @@ Route::group(['middleware' => ['auth','giaovien']], function () {
     Route::post('/giao-vien/them-lop',[LopController::class, 'xuLyThemLop'])->name('xl-them-lop-day');
     Route::get('/giao-vien/xoa-sinh-vien/{id}/{idlop}',[TaiKhoanController::class, 'formXoaSinhVien'])->name('xoa-sinh-vien');
     Route::post('/giao-vien/xoa-sinh-vien/{id}/{idlop}',[TaiKhoanController::class, 'xoaSinhVien'])->name('xl-xoa-sinh-vien');
+    Route::get('/giao-vien/xet-duyet/{id}',[ThamGiaController::class, 'layDanhSachHangCho'])->name('hang-cho');
+    Route::get('/giao-vien/them-sinh-vien/{id}/{idsv}',[ThamGiaController::class, 'xuLyDanhSachHangCho'])->name('xl-hang-cho');
+    Route::get('/giao-vien/xoa-hang-cho/{id}/{idsv}',[ThamGiaController::class, 'xuLyXoaDanhSachHangCho'])->name('xl-xoa-hang-cho');
+
     
 });
 

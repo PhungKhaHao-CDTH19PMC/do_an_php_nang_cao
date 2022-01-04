@@ -2,12 +2,10 @@
 
 @section('main-content')
 <div class="content-wrapper">
-            <div class="page-header">
             @error('failed')
               <div class="alert alert-danger">{{$message}}</div>
             @enderror
             <h4>Thêm lớp</h4>
-            </div>
             <div class="row">
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">

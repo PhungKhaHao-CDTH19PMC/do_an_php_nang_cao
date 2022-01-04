@@ -16,7 +16,7 @@ class MailController extends Controller
     public function recoverPass(Request $request )
     {
         $data = $request->all();
-        $now=Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
+        $now=Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y H:i:s');
         $title_email="Lấy lại mật khẩu Elearning".' ' .$now;
         $token_random=Str::random(10);
         $taikhoan=TaiKhoan::where('email','=',$data['email'])->get();

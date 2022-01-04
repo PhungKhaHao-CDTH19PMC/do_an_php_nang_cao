@@ -18,7 +18,16 @@
             @error('passed')
               <div class="alert alert-success">{{$message}}</div>
             @enderror
-             
+            @if (session('error'))
+                <div class="alert alert-danger" style="color: black">
+                  {{ session('error') }}
+                </div>
+            @endif  
+            @if (session('thanhcong'))
+                <div class="alert alert-success" style="color: black">
+                  {{ session('thanhcong') }}
+                </div>
+            @endif
             <div class="row">
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
@@ -27,7 +36,7 @@
                       @csrf
                       <div class="form-group">
                         <label for="exampleInputUsername1">Email Sinh Viên</label>
-                        <input type="email" class="form-control" id="exampleInputUsername1" placeholder="email " name="email">
+                        <input class="form-control" id="exampleInputUsername1" placeholder="email " name="email">
                       </div>
                       <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     </form>
