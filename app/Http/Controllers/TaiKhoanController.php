@@ -430,4 +430,5 @@ class TaiKhoanController extends Controller
         }
         return redirect()->route('chi-tiet-lop', ['id'=>$lop->id])->withErrors(['failed'=>"Sinh viên không học tại lớp"]);
     }
+   
 }

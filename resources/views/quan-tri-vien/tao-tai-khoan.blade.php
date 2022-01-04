@@ -14,7 +14,7 @@
                     <form class="forms-sample" action="{{ route('tao-tai-khoan')}}" method="post" enctype="multipart/form-data">
                       @csrf
                       <div class="form-group">
-                        <label for="exampleInputConfirmPassword1">Country</label>
+                        <label for="exampleInputConfirmPassword1">Loại Tài Khoản</label>
                         <select class="form-control" name="phan_quyen">
                         @foreach($dsquyen as $ds)
                           <option value="{{ $ds->id}}">{{ $ds->loai_nguoi_dung}}</option>
@@ -30,7 +30,7 @@
                       </div>
                       <div class="form-group">
                         <label for="exampleInputUsername1">Password</label>
-                        <input type="text" class="form-control" id="exampleInputUsername1" name="password" placeholder="password">
+                        <input type="text" class="form-control" id="exampleInputUsername1" name="password" placeholder="Password">
                         @error('password')
                           <span style="color:red;">{{$message}}</span>
                         @enderror
@@ -58,7 +58,7 @@
                       </div>
                       <div class="form-group">
                         <label for="exampleInputUsername1">Số điện thoại</label>
-                        <input type="text" class="form-control" id="exampleInputUsername1" placeholder="sdt" name="sdt"  >
+                        <input type="text" class="form-control" id="exampleInputUsername1" placeholder="SĐT" name="sdt"  >
                         @error('sdt')
                           <span style="color:red;">{{$message}}</span>
                         @enderror

@@ -18,6 +18,7 @@ class CreateTaiKhoanTable extends Migration
             $table->integer('phan_quyen_id');
             $table->string('username');
             $table->string('password');
+            $table->string('token');
             $table->string('ho_ten');
             $table->date('ngay_sinh');
             $table->string('email');

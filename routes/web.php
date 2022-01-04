@@ -9,6 +9,7 @@ use App\Http\Controllers\DangKiController;
 use App\Http\Controllers\DanhSachLopHocController;
 use App\Http\Controllers\DangXuatController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\MailController;
 
 
 
@@ -31,8 +32,14 @@ Route::get('/', function () {
 Route::get('/dang-nhap',[TaiKhoanController::class, 'dangNhap'])->name('dang-nhap');
 Route::post('/dang-nhap',[TaiKhoanController::class, 'xuLyDangNhap'])->name('xl-dang-nhap');
 Route::get('/dang-ki',[TaiKhoanController::class, 'dangKi'])->name('dang-ki');
+
 Route::post('/dang-ki',[TaiKhoanController::class, 'xuLyDangKi'])->name('xl-dang-ki');
 Route::get('/dang-xuat',[TaiKhoanController::class, 'dangXuat'])->name('dang-xuat');
+//reset pass
+Route::get('/gui-mail',[MailController::class, 'guiMail'])->name('gui-mail');
+Route::post('/revover-pass',[MailController::class, 'recoverPass'])->name('recover-pass');
+Route::get('/update-new-pass',[MailController::class, 'updateNewPass']);
+
 
 Route::middleware('auth')->group(function(){
     Route::get('/tai-khoan/cap-nhat/{id}',[TaiKhoanController::class, 'formCapNhatTaiKhoan'])->name('cap-nhat-tai-khoan');

@@ -58,7 +58,7 @@
                                     </div>
                                     @endif  
                                     <div class="form-group">
-			                        	<a style="float:left" href="#">Quên mật khẩu?</a>
+			                        	<a style="float:left" href="{{route('gui-mail')}}">Quên mật khẩu?</a>
 			                        </div>
                                     <div class="form-group">
 			                        	<a style="float:right" href="{{route('dang-ki')}}">Chưa có tài khoản?</a>
