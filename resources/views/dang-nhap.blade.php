@@ -57,6 +57,15 @@
                                         {{ session('error') }}
                                     </div>
                                     @endif  
+                                    @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {!! session()->get('message') !!}
+                    </div>
+                @elseif(session()->has('error'))
+                     <div class="alert alert-danger">
+                        {!! session()->get('error') !!}
+                    </div>
+                @endif
                                     <div class="form-group">
 			                        	<a style="float:left" href="{{route('gui-mail')}}">Quên mật khẩu?</a>
 			                        </div>

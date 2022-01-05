@@ -1,64 +1,87 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
-  <body>
-      <style>
-          .form-gap {
-    padding-top: 70px;
-}
-      </style>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+    <head>
 
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
- <div class="form-gap"></div>
-<div class="container">
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <div class="text-center">
-                  <div class="panel-body">
-                    <form id="register-form" role="form" autocomplete="off" class="form" method="post">
-                      <div class="form-group">
-                        <div class="input-group">
-                          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                          <input id="password" name="password" placeholder="Mật khẩu mới" class="form-control"  type="password">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Reset Password E-learning</title>
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/css/form-elements.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="shortcut icon" href="assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="top-content">
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1><strong>E-Learning</strong>Reset Password Form</h1>
                         </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3>Đặt lại mật khẩu</h3>
+                            		<p>Nhập mật khẩu muốn thay đổi:</p>
+                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-key"></i>
+                        		</div>
+                            </div>
+                            
+                            <div class="form-bottom">
+                            <form action="{{route('reset-new-pass')}}" id="register-form" role="form" autocomplete="off" class="form" method="POST">
+                      <div class="form-group">
+                      @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {!! session()->get('message') !!}
+                    </div>
+                @elseif(session()->has('error'))
+                     <div class="alert alert-danger">
+                        {!! session()->get('error') !!}
+                    </div>
+                @endif
+                        @php
+                        $email =$_GET['email'];
+                        $token =$_GET['token'];
+                        @endphp
+                        @csrf
+                        <input type="hidden" name="email" value="{{$email}}">
+                        <input type="hidden" name="token" value="{{$token}}">
                         <div class="input-group">
-                          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                          
-                          <input id="password" name="password" placeholder="Nhập lại mật khẩu" class="form-control"  type="password">
+                          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                          <input id="password" name="password" placeholder="Mật khẩu mới" class="form-control"  type="password" style="height: 50px">
                         </div>
                       </div>
                       <div class="form-group">
                         <input name="recover-submit" class="btn btn-lg btn-primary btn-block" value="Reset Password" type="submit">
                       </div>
                       
-                      <input type="hidden" class="hide" name="token" id="token" value=""> 
+                      
                     </form>
-    
-                  </div>
+                    
+		                    </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-	</div>
-</div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+        </div>
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
+    </body>
+
 </html>
