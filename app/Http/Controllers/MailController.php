@@ -70,4 +70,16 @@ class MailController extends Controller
        return redirect('gui-mail')->with('error','Đổi mật khẩu không thành công vì email đã hết hạn!!!');
     }
  }
+ public function sendEmailAd(Request $request,$id)
+ {
+    $data = $request->all();
+    $tk=TaiKhoan::find($id);
+    $title_email="Thông báo từ quản trị viên";
+    $to_email=$tk->email;//gui den email
+                $data=array("name"=>$title_email,"body"=>$link_reset_password,'email'=>$data['email'],"hoten"=>$taikhoan->ho_ten);//body email
+                Mail::send('forgot-pass',['data'=>$data],function($message)use ($title_email,$data){
+                    $message->to($data['email'])->subject($title_email);
+                    $message->from($data['email'],"Elearning");
+                });
+ }
 }
