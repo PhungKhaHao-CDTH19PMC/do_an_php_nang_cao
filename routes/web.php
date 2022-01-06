@@ -38,7 +38,9 @@ Route::get('/dang-xuat',[TaiKhoanController::class, 'dangXuat'])->name('dang-xua
 //reset pass
 Route::get('/gui-mail',[MailController::class, 'guiMail'])->name('gui-mail');
 Route::post('/revover-pass',[MailController::class, 'recoverPass'])->name('recover-pass');
-Route::get('/update-new-pass',[MailController::class, 'updateNewPass']);
+Route::get('/update-new-pass',[MailController::class, 'updateNewPass'])->name('update-new-pass');
+
+Route::post('/reset-new-pass',[MailController::class, 'resetNewPass'])->name('reset-new-pass');
 
 
 Route::middleware('auth')->group(function(){
