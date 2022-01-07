@@ -67,7 +67,7 @@
                                                     <table border="0" cellpadding="0" cellspacing="0" class="image_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
                                                         <tr>
                                                             <td style="width:100%;padding-right:0px;padding-left:0px;padding-top:8px;">
-                                                                <div align="center" style="line-height:10px"><a href="#" target="_blank"><img  alt="Main Image" src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/3986/header3.png" style="display: block; height: auto; border: 0; width: 232px; max-width: 100%;" title="Main Image" width="232" /></a></div>
+                                                                <div align="center" style="line-height:10px"><a href="#" target="_blank"><img  alt="" src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/3986/header3.png" style="display: block; height: auto; border: 0; width: 232px; max-width: 100%;" title="Main Image" width="232" /></a></div>
                                                             </td>
                                                         </tr>
                                                     </table>

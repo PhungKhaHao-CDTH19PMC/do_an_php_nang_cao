@@ -10,7 +10,7 @@ use App\Http\Controllers\DanhSachLopHocController;
 use App\Http\Controllers\DangXuatController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MailController;
-
+use App\Http\Controllers\EmailController;
 
 
 
@@ -39,9 +39,10 @@ Route::get('/dang-xuat',[TaiKhoanController::class, 'dangXuat'])->name('dang-xua
 Route::get('/gui-mail',[MailController::class, 'guiMail'])->name('gui-mail');
 Route::post('/revover-pass',[MailController::class, 'recoverPass'])->name('recover-pass');
 Route::get('/update-new-pass',[MailController::class, 'updateNewPass'])->name('update-new-pass');
-
 Route::post('/reset-new-pass',[MailController::class, 'resetNewPass'])->name('reset-new-pass');
-
+//gửi mail
+Route::get('/email/{id}', [EmailController::class, 'create']);
+Route::post('/email/{id}', [EmailController::class, 'sendEmail'])->name('send.email');
 
 Route::middleware('auth')->group(function(){
     Route::get('/tai-khoan/cap-nhat/{id}',[TaiKhoanController::class, 'formCapNhatTaiKhoan'])->name('cap-nhat-tai-khoan');

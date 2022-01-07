@@ -33,6 +33,7 @@
                     <td>{{ $ds->email}}</td>
                     <td>{{ $ds->sdt}}</td>
                     <td>{{ $ds->phanQuyen->loai_nguoi_dung}}</td>
+                    <td><a href="{{ route('send.email',['id' => $ds->id])}}">Gửi mail</a></td>
                     <td><a href="{{route('cap-nhat-tai-khoan-qtv',['id' => $ds->id])}}">Cập nhật</a></td>
                     <td><a href="{{route('xoa-tai-khoan',['id' => $ds->id])}}">Xóa</a></td>  
                               
