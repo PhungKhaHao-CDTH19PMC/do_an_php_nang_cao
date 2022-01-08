@@ -59,7 +59,7 @@ Contact Form
 			@endif
 
 <div class="wrap-input100 validate-input" data-validate = "Name is required">
-<input class="input100" type="text" name="name" placeholder="Name">
+<input class="input100" type="text" name="name" placeholder="Name" value="{{auth()->user()->ho_ten}}">
 <span class="focus-input100"></span>
 <span class="symbol-input100">
 <i class="fa fa-user" aria-hidden="true"></i>
