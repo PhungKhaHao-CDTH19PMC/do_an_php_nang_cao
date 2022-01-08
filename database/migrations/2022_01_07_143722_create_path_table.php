@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBinhLuanTable extends Migration
+class CreateLinkTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateBinhLuanTable extends Migration
      */
     public function up()
     {
-        Schema::create('binh_luan', function (Blueprint $table) {
+        Schema::create('link', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('post_id');
-            $table->integer('tai_khoan_id');
-            $table->string('noi_dung');
+            $table->String('link');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +29,6 @@ class CreateBinhLuanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('binh_luan');
+        Schema::dropIfExists('link');
     }
 }
