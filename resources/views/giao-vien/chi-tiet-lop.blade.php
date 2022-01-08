@@ -8,7 +8,7 @@
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Mọi người</a></li>
-                  <li class="breadcrumb-item active" aria-current="page"><a href="#">Bài viết</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"><a href="{{route('ds-bai-viet-giao-vien', ['id' => $lop->id])}}">Bài viết</a></li>
                   <li class="breadcrumb-item"><a href="{{route('hang-cho',['id' => $lop->id])}}">Hàng chờ</a></li>
                 </ol>
               </nav>
