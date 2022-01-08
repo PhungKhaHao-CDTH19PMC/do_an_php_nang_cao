@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/bai-viet/lop',[PostController::class, 'layDanhSach'])->name('ds-bai-viet');
     Route::get('/bai-viet-giao-vien/lop/{id}',[PostController::class, 'layDSTrangGiaoVien'])->name('ds-bai-viet-giao-vien');
     Route::get('/tao-bai-viet/lop/{id}',[PostController::class, 'taoBaiViet'])->name('tao-bai-viet');
-    Route::post('/xl-tao-bai-viet/lop/{id}',[PostController::class, 'xuLyTaoBaiViet'])->name('xl-tao-bai-viet');
+    Route::post('/tao-bai-viet/lop/{id}',[PostController::class, 'xuLyTaoBaiViet'])->name('xl-tao-bai-viet');
 });
 
 

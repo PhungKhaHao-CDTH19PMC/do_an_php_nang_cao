@@ -1,7 +1,10 @@
-@extends('sinh-vien.main')
+@extends('giao-vien.main')
 
 @section('main-content')
-<form method="POST" action="">
+                                @error('passed')
+                                    <div class="alert alert-success">{{$message}}</div>
+                                @enderror
+<form method="POST" action="{{route('xl-tao-bai-viet',['id' => $lop->id])}}" method="POST" enctype="multipart/form-data">
 @csrf
   <div class="form-check">
                                 <input class="form-check-input" type="radio" name="radio" value="1" checked>
@@ -29,11 +32,11 @@
                             </div>
   <div class="form-group">
     <label for="tieude">Tiêu đề</label>
-    <input type="text" class="form-control" name="tieude">
+    <input type="text" class="form-control" name="tieu_de">
   </div>
   <div class="form-group">
   <label for="noidung">Nội dung</label>
-  <textarea class="form-control" rows="10" name="noidung"></textarea>
+  <textarea class="form-control" rows="10" name="noi_dung"></textarea>
 </div>
  <div class="form-group">
    <input type="file" name="file" placeholder="Choose file" id="file">
@@ -43,7 +46,7 @@
   <div class="form-group">
   <label for="noidung">Thời hạn</label>
 		<input style="height: 45px; border: 3px solid #ddd;background: #f8f8f8" 
-        type="date" name="thoihan" class="form-control" >
+        type="date" name="thoi_han" class="form-control" >
                                       
  </div>
   <button type="submit" class="btn btn-primary">Đăng</button>

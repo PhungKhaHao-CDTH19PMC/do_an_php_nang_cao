@@ -68,6 +68,7 @@ class TaiKhoanController extends Controller
         $tk->ngay_sinh=$request->ngay_sinh;
         $tk->email=$request->email;
         $tk->sdt=$request->sdt;
+        
         $image = $request->file('hinh_anh');
         $ex=  $request->file('hinh_anh')->extension();
         $file_name= time() . '.'.$ex;

@@ -1,4 +1,4 @@
-@extends('sinh-vien.main')
+@extends('giao-vien.main')
 
 @section('main-content')
 <div class="content-wrapper">
@@ -6,7 +6,7 @@
               <h3 style="color:#007bff;" class="page-title"> Name </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a class="btn-primary" href="{{route('tao-bai-viet', ['id' => $lop->lop_id])}}">Tạo bài viết</a></li>
+                  <li class="breadcrumb-item"><a class="btn-primary" href="{{route('tao-bai-viet', ['id' => $lop->id])}}">Tạo bài viết</a></li>
                   
                 </ol>
               </nav>
