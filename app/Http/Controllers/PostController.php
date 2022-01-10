@@ -43,18 +43,20 @@ class PostController extends Controller
         }
         $post= new Post();
         $post->lop_id=$lop->id;
-        $post->loai_post_id=1;
+        
+        $post->loai_post_id = $request->radio;
         $post->tieu_de=$request->tieu_de;
         $post->noi_dung=$request->noi_dung;
         $post->thoi_han=$request->thoi_han;
-
-        $image = $request->file('file');
+        
+        $file = $request->file('file');
         $ex=  $request->file('file')->extension();
         $file_name= time() . '.'.$ex;
-        $storedPath = $image->storeAs('file', $file_name);
-        //$post->file=$file_name;
+        $storedPath = $file->storeAs('file', $file_name);
+        $post->file=$file_name;
+       
 
         $post->save();
-        return back()->withErrors(['passed'=>"Tạo thành công"]);
+        return redirect()->route('ds-bai-viet-giao-vien',['id' => $lop->id])->withErrors(['passed'=>"Tạo thành công"]);
     }
 }

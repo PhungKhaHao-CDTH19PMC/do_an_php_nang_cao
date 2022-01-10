@@ -1,6 +1,8 @@
 @extends('giao-vien.main')
 
 @section('main-content')
+
+
 <div class="content-wrapper">
             <div class="page-header">
               <h3 style="color:#007bff;" class="page-title"> Name </h3>
@@ -14,11 +16,31 @@
     
     <div class="card mb-3">
     <img class="card-img" src="{{URL::to('/')}}/images/123_auto_x2.jpg" alt="Card image">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    @foreach($post as $ds)
+  <div class="card bg-dark m-2">
+    <h5 class="card-header">
+    @php
+      $loai = '';
+      switch ($ds->loai_post_id) {
+    case 1:
+      $loai = 'Thông báo';
+    break;
+    case 2:
+      $loai = 'Bài tập';
+    break;
+    case 3:
+      $loai = 'Bài kiểm tra';
+    break;
+    case 4:
+      $loai = 'Tài liệu';
+    break;
+      }
+    @endphp  
+    {{$loai}}: {{$ds->tieu_de}}</h5>
+    <p class="card-body">{{$ds->noi_dung}}</p>
+    
   </div>
+  @endforeach
 </div>
 </div>
 @endsection
