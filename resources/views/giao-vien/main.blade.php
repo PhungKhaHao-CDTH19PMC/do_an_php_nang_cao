@@ -43,46 +43,6 @@
               <span class="menu-title">Danh Sách Lớp</span>
             </a>
           </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="">
-              <span class="menu-icon">
-                <i class="mdi mdi-playlist-play"></i>
-              </span>
-              <span class="menu-title">Form Elements</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="">
-              <span class="menu-icon">
-                <i class="mdi mdi-table-large"></i>
-              </span>
-              <span class="menu-title">Tables</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="">
-              <span class="menu-icon">
-                <i class="mdi mdi-chart-bar"></i>
-              </span>
-              <span class="menu-title">Charts</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="">
-              <span class="menu-icon">
-                <i class="mdi mdi-contacts"></i>
-              </span>
-              <span class="menu-title">Icons</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="">
-              <span class="menu-icon">
-                <i class="mdi mdi-file-document-box"></i>
-              </span>
-              <span class="menu-title">Documentation</span>
-            </a>
-          </li>
         </ul>
       </nav>
       <!-- partial -->
@@ -98,9 +58,8 @@
             </button>
             <ul class="navbar-nav w-100">
               <li class="nav-item w-100">
-                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                  <input type="text" class="form-control" placeholder="Search">
-                </form>
+                
+                @yield('search')
               </li>
             </ul>
             <ul class="navbar-nav navbar-nav-right">

@@ -18,8 +18,10 @@ class CreatePostTable extends Migration
             $table->integer('lop_id');
             $table->integer('loai_post_id');
             $table->string('tieu_de');
+            $table->string('file')->nullable();
             $table->string('noi_dung');
-            $table->dateTime('thoi_han');
+            $table->date('thoi_han_ngay')->nullable();
+            $table->time('thoi_han_gio')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

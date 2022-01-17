@@ -17,7 +17,6 @@ class CreateBinhLuanTable extends Migration
             $table->increments('id');
             $table->integer('post_id');
             $table->integer('tai_khoan_id');
-            $table->string('link_dinh_kem');
             $table->string('noi_dung');
             $table->timestamps();
             $table->softDeletes();
