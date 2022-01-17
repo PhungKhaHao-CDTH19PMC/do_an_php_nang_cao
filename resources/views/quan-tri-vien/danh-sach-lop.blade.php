@@ -77,7 +77,10 @@
                <div class="card-footer bg-transparent ">
                   <div class="d-flex flex-row-reverse bd-highlight">
                     <div class="p-2 bd-highlight bg-shadow">
-                      <a href="{{route('chi-tiet-lop',['id' => $ds->id])}}">  <i class="fal fa-info-circle"></i></a>
+                      <a href="{{route('chi-tiet-lop',['id' => $ds->id])}}">  <i class="fal fa-info-circle"></i></a>                      
+                    </div>
+                    <div class="p-2 bd-highlight bg-shadow">                      
+                      <a href="{{ route('send.email',['id' => $ds->tai_khoan_id])}}"><i class="fa fa-envelope"></i></a>  
                     </div>
                  </div>
                </div>

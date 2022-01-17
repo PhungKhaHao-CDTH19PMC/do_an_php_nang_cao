@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Models\TaiKhoan;
+use App\Models\ThamGia;
+use App\Models\Lop;
 class EmailController extends Controller
 {
     public function create($id)
@@ -15,6 +17,7 @@ class EmailController extends Controller
 
     public function sendEmail(Request $request,$id)
     {
+      
       $tk=TaiKhoan::find($id);
       
         $request->validate([
@@ -23,14 +26,17 @@ class EmailController extends Controller
           'name' => 'required',
           'content' => 'required',
         ]);
-
+        
+        
         $data = [
           'subject' => $request->subject,
           'name' => $request->name,
           'email' => $request->email,
-          'content' => $request->content
+          'content' => $request->content,
+        
         ];
-
+       
+        // $data1=array("body"=>$tenlop->ten_lop);
         Mail::send('email-template', $data, function($message) use ($data) {
           $message->to($data['email'])->subject($data['subject']);
           $message->from($data['email'],$data['name']);

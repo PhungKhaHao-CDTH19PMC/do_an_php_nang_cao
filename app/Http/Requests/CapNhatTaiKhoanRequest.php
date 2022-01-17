@@ -27,7 +27,7 @@ class CapNhatTaiKhoanRequest extends FormRequest
             'ho_ten' => 'required',
             'ngay_sinh' => 'required',
             'email' => 'required|unique:tai_khoan,email,'.$this->id,
-            'sdt' => 'required',
+            'sdt' => 'required|regex:/^(0)[0-9]{9}$/',
             'hinh_anh' => 'mimes:jpg,jpeg,png,gif|max:2048',
         ];
     }
@@ -39,6 +39,7 @@ class CapNhatTaiKhoanRequest extends FormRequest
             'email.required' => 'Chưa nhập email',
             'email.unique' => 'Email đã tồn tại',
             'sdt.required' => 'Chưa nhập số điện thoại',
+            'sdt.regex' => 'Số điện thoại sai định dạng',
             'hinh_anh.mimes' => 'Chỉ chấp nhận hình thẻ với đuôi .jpg .jpeg .png .gif',
 			'hinh_anh.max' => 'Hình thẻ giới hạn dung lượng không quá 2M',
         ];
