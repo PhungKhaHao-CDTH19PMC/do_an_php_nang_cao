@@ -7,7 +7,7 @@
             <h3 style="color:#007bff;" class="page-title"> Tên lớp: {{ $lop->ten_lop}} </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Mọi người</a></li>
+                  <li class="breadcrumb-item"><a href="{{route('chi-tiet-lop',['id' => $lop->id])}}">Mọi người</a></li>
                   <li class="breadcrumb-item active" aria-current="page"><a href="{{route('ds-bai-viet-giao-vien', ['id' => $lop->id])}}">Bài viết</a></li>
                   <li class="breadcrumb-item"><a href="{{route('hang-cho',['id' => $lop->id])}}">Hàng chờ</a></li>
                 </ol>
@@ -76,4 +76,16 @@
                 </tbody>
               </table>
               </div>
+@endsection
+
+@section('search')
+<form action="{{route('tim-kiem-sinh-vien',['id' => $lop->id])}}">
+  @csrf
+<div class="input-group">
+  <input type="text" class="form-control" name="email" placeholder="Nhập email sinh viên">
+  <div class="input-group-append">
+    <button class="btn btn-secondary" type="submit">Search</button>
+  </div>
+</div>
+</form>
 @endsection

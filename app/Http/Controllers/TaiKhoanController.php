@@ -431,5 +431,28 @@ class TaiKhoanController extends Controller
         }
         return redirect()->route('chi-tiet-lop', ['id'=>$lop->id])->withErrors(['failed'=>"Sinh viên không học tại lớp"]);
     }
-   
+    public function timKiemSinhVien(Request $request,$id)
+    {
+        $lop=Lop::find($id);
+        if($lop==null)
+        {
+            return back()->withErrors(['failed'=>"Lớp không tồn tại"]);
+        }
+        $sv = TaiKhoan::where('email', $request->email)->first();
+        if($sv==null)
+        {
+            return back()->withErrors(['failed'=>"Email sinh viên không tồn tại"]);
+        }
+        if($sv->phan_quyen_id==2||$sv->phan_quyen_id==3)
+        {
+            return back()->withErrors(['failed'=>"Đây không phải email sinh viên"]);
+        }
+        $tg= ThamGia::where('tai_khoan_id',$sv->id)->first();
+        if($tg==null)
+        {
+            return back()->withErrors(['failed'=>"Sinh viên không học tại lớp"]);
+        }
+        
+        return view('giao-vien/search-sinh-vien', compact('sv','lop'));
+    }
 }

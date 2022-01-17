@@ -52,8 +52,13 @@ Route::middleware('auth')->group(function(){
     Route::get('/chi-tiet-lop/{id}',[LopController::class, 'chiTietLop'])->name('chi-tiet-lop');
     Route::get('/bai-viet/lop',[PostController::class, 'layDanhSach'])->name('ds-bai-viet');
     Route::get('/bai-viet-giao-vien/lop/{id}',[PostController::class, 'layDSTrangGiaoVien'])->name('ds-bai-viet-giao-vien');
-    Route::get('/tao-bai-viet/lop/{id}',[PostController::class, 'taoBaiViet'])->name('tao-bai-viet');
-    Route::post('/tao-bai-viet/lop/{id}',[PostController::class, 'xuLyTaoBaiViet'])->name('xl-tao-bai-viet');
+    Route::get('/binh-luan/{id}',[PostController::class, 'layDanhSachBinhLuan'])->name('ds-binh-luan');
+    Route::get('/tao-binh-luan/lop/{id}',[PostController::class, 'taoBinhLuan'])->name('tao-binh-luan');
+    Route::post('/tao-binh-luan/lop/{id}',[PostController::class, 'xuLyTaoBinhLuan'])->name('xl-tao-binh-luan');
+    Route::get('/cap-nhat/binh-luan/{id}',[PostController::class, 'formCapNhatBinhLuan'])->name('cap-nhat-binh-luan');
+    Route::post('/cap-nhat/binh-luan/{id}',[PostController::class, 'capNhatBinhLuan'])->name('xl-cap-nhat-binh-luan');
+    Route::get('/xoa/binh-luan/{id}',[PostController::class, 'formXoaBinhLuan'])->name('xoa-binh-luan');
+    Route::post('/xoa/binh-luan/{id}',[PostController::class, 'xoaBinhLuan'])->name('xl-xoa-binh-luan');
 });
 
 
@@ -62,6 +67,10 @@ Route::group(['middleware' => ['auth','sinhvien']], function () {
     Route::post('/sinh-vien/them-lop',[ThamGiaController::class, 'xuLyHangCho'])->name('xl-them-lop-hoc');
     Route::get('/sinh-vien/lop/roi-khoi/{id}',[TaiKhoanController::class, 'formXoaLophoc'])->name('roi-khoi-lop');
     Route::post('/sinh-vien/lop/roi-khoi/{id}',[TaiKhoanController::class, 'xoaLophoc'])->name('xl-roi-khoi-lop');
+    Route::get('/sinh-vien/nop-bai/{id}',[PostController::class, 'NopBai'])->name('form-nop-bai');
+    Route::post('/sinh-vien/nop-bai/{id}',[PostController::class, 'xuLyNopBai'])->name('xl-nop-bai');
+
+    
 });
 
 Route::group(['middleware' => ['auth','giaovien']], function () {
@@ -77,8 +86,15 @@ Route::group(['middleware' => ['auth','giaovien']], function () {
     Route::get('/giao-vien/xet-duyet/{id}',[ThamGiaController::class, 'layDanhSachHangCho'])->name('hang-cho');
     Route::get('/giao-vien/them-sinh-vien/{id}/{idsv}',[ThamGiaController::class, 'xuLyDanhSachHangCho'])->name('xl-hang-cho');
     Route::get('/giao-vien/xoa-hang-cho/{id}/{idsv}',[ThamGiaController::class, 'xuLyXoaDanhSachHangCho'])->name('xl-xoa-hang-cho');
-
-    
+    Route::post('/giao-vien/tim-kiem-post/{id}',[PostController::class, 'timKiemPost'])->name('tim-kiem-post');
+    Route::get('/giao-vien/tim-kiem-sinh-vien/{id}',[TaiKhoanController::class, 'timKiemSinhVien'])->name('tim-kiem-sinh-vien');
+    Route::get('/tao-bai-viet/lop/{id}',[PostController::class, 'taoBaiViet'])->name('tao-bai-viet');
+    Route::post('/tao-bai-viet/lop/{id}',[PostController::class, 'xuLyTaoBaiViet'])->name('xl-tao-bai-viet');
+    Route::get('/giang-vien/cap-nhat/bai-viet/{id}',[PostController::class, 'formCapNhatBaiViet'])->name('cap-nhat-bai-viet');
+    Route::post('/giang-vien/cap-nhat/bai-viet/{id}',[PostController::class, 'capNhatBaiViet'])->name('xl-cap-nhat-bai-viet');
+    Route::get('/giang-vien/xoa/bai-viet/{id}',[PostController::class, 'formXoaBaiViet'])->name('xoa-bai-viet');
+    Route::post('/giang-vien/xoa/bai-viet/{id}',[PostController::class, 'xoaBaiViet'])->name('xl-xoa-bai-viet');
+    Route::get('/danh-sach/nop-bai/{id}',[PostController::class, 'dsNopBai'])->name('ds-nop-bai');
 });
 
 Route::group(['middleware' => ['auth','both']], function () {

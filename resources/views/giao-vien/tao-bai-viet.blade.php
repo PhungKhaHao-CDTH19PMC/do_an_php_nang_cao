@@ -5,32 +5,19 @@
                                 @error('passed')
                                     <div class="alert alert-success">{{$message}}</div>
                                 @enderror
+                                @error('failed')
+              <div class="alert alert-danger">{{$message}}</div>
+            @enderror
 <form method="POST" action="{{route('xl-tao-bai-viet',['id' => $lop->id])}}" method="POST" enctype="multipart/form-data">
 @csrf
-  <div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio" value="1" checked>
-                                <label class="form-check-label" for="1">
-                                    Thông báo
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio" value="2" >
-                                <label class="form-check-label" for="2">
-                                    Bài tập
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio" value="3" >
-                                <label class="form-check-label" for="3">
-                                    Bài kiểm tra
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio" value="4" >
-                                <label class="form-check-label" for="4">
-                                    Tài liệu
-                                </label>
-                            </div>
+<div class="form-group">
+    <label for="exampleInputConfirmPassword1">Loại Bài Viết</label>
+    <select class="form-control" name="loai_post">
+    @foreach($loaipost as $ds)
+        <option value="{{ $ds->id}}">{{ $ds->loai_post}}</option>
+    @endforeach
+    </select>
+</div>
   <div class="form-group">
     <label for="tieude">Tiêu đề</label>
     <input type="text" class="form-control" name="tieu_de">
@@ -47,11 +34,16 @@
   </div>
   
   <div class="form-group">
-  <label for="noidung">Thời hạn</label>
-		<input style="height: 45px; border: 3px solid #ddd;background: #f8f8f8" 
-        type="date" name="thoi_han" class="form-control" >
+  <label for="noidung">Thời hạn ngày</label>
+		<input type="date" name="thoi_han_ngay" class="form-control" >
                                       
  </div>
+
+ <div class="form-group">
+  <label for="noidung">Thời hạn giờ</label>
+		<input type="time" name="thoi_han_gio" class="form-control" >                            
+ </div>
+
   <button type="submit" class="btn btn-primary">Đăng</button>
 </form>
 </div>
