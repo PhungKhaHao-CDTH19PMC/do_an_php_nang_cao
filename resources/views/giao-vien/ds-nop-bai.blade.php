@@ -12,6 +12,7 @@
                     <th scope="col">Ngày sinh</th>
                     <th scope="col">Email</th>
                     <th scope="col">Số điện thoại</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,7 @@
                     <td>{{ $ds->ngay_sinh}}</td>
                     <td>{{ $ds->email}}</td>
                     <td>{{ $ds->sdt}}</td>
+                    <td><a href="{{url('/fileBaiNop', $np->file)}}" download>Tệp đính kèm</td>
                 </tr>
                 @empty
                 <tr>
