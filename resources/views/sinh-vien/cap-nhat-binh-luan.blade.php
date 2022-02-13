@@ -1,9 +1,12 @@
-@extends('giao-vien.main')
+@extends('sinh-vien.main')
 
 @section('main-content')
 <div class="content-wrapper">
                                 @error('passed')
                                     <div class="alert alert-success">{{$message}}</div>
+                                @enderror
+                                @error('failed')
+                                    <div class="alert alert-danger">{{$message}}</div>
                                 @enderror
 <form method="POST" action="{{route('xl-cap-nhat-binh-luan',['id' => $cmt->id])}}" method="POST" enctype="multipart/form-data">
 @csrf

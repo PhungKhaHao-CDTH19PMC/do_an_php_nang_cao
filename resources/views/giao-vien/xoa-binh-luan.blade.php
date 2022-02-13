@@ -5,6 +5,9 @@
                                 @error('passed')
                                     <div class="alert alert-success">{{$message}}</div>
                                 @enderror
+                                @error('failed')
+                                    <div class="alert alert-danger">{{$message}}</div>
+                                @enderror
 <form method="POST" action="{{route('xl-xoa-binh-luan',['id' => $cmt->id])}}">
 @csrf
   <div class="form-group">
