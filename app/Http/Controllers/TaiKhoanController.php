@@ -426,7 +426,7 @@ class TaiKhoanController extends Controller
         $tg=ThamGia::where('tai_khoan_id',$tk->id)->where('lop_id',$idlop)->first();
         if($tg)
         {
-            $tg=ThamGia::where('tai_khoan_id',$tk->id)->delete();
+            $tg->delete();
             return redirect()->route('chi-tiet-lop', ['id'=>$lop->id])->withErrors(['passed'=>"Xóa thành công"]);
         }
         return redirect()->route('chi-tiet-lop', ['id'=>$lop->id])->withErrors(['failed'=>"Sinh viên không học tại lớp"]);

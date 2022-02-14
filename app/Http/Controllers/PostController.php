@@ -214,7 +214,21 @@ class PostController extends Controller
         $cmt=BinhLuan::find($id);
         if($cmt==null)
         {
-            return redirect()->route('ds-binh-luan',['id' => $cmt->post_id])->withErrors(['failed'=>"Không tìm thấy bài viết này"]);
+            if(auth()->user()->phan_quyen_id==1)
+            {
+                return back()->withErrors(['failed'=>"Không tồn tại bình luận"]);   
+
+            }
+            if(auth()->user()->phan_quyen_id==2)
+            {
+                return back()->withErrors(['failed'=>"Không tồn tại bình luận"]);
+
+            }
+            if(auth()->user()->phan_quyen_id==3)
+            {
+                return back()->withErrors(['failed'=>"Không tồn tại bình luận"]);
+
+            }
         }
         if($cmt->tai_khoan_id!=auth()->user()->id)
         {
@@ -242,7 +256,21 @@ class PostController extends Controller
         $cmt=BinhLuan::find($id);
         if($cmt==null)
         {
-            return redirect()->route('ds-binh-luan',['id' => $cmt->post_id])->withErrors(['failed'=>"Không tìm thấy bài viết này"]);
+            if(auth()->user()->phan_quyen_id==1)
+            {
+                return back()->withErrors(['failed'=>"Không tồn tại bình luận"]);   
+
+            }
+            if(auth()->user()->phan_quyen_id==2)
+            {
+                return back()->withErrors(['failed'=>"Không tồn tại bình luận"]);
+
+            }
+            if(auth()->user()->phan_quyen_id==3)
+            {
+                return back()->withErrors(['failed'=>"Không tồn tại bình luận"]);
+
+            }
         }
         if($cmt->tai_khoan_id!=auth()->user()->id)
         {
@@ -257,7 +285,21 @@ class PostController extends Controller
         $cmt=BinhLuan::find($id);
         if($cmt==null)
         {
-            return redirect()->route('ds-binh-luan',['id' => $cmt->post_id])->withErrors(['failed'=>"Không tìm thấy bài viết này"]);
+            if(auth()->user()->phan_quyen_id==1)
+            {
+                return back()->withErrors(['failed'=>"Không tồn tại bình luận"]);   
+
+            }
+            if(auth()->user()->phan_quyen_id==2)
+            {
+                return back()->withErrors(['failed'=>"Không tồn tại bình luận"]);
+
+            }
+            if(auth()->user()->phan_quyen_id==3)
+            {
+                return back()->withErrors(['failed'=>"Không tồn tại bình luận"]);
+
+            }
         }
         if($cmt->tai_khoan_id!=auth()->user()->id)
         {
@@ -286,7 +328,21 @@ class PostController extends Controller
         $cmt=BinhLuan::find($id);
         if($cmt==null)
         {
-            return redirect()->route('ds-binh-luan',['id' => $cmt->post_id])->withErrors(['failed'=>"Không tìm thấy bài viết này"]);
+            if(auth()->user()->phan_quyen_id==1)
+            {
+                return back()->withErrors(['failed'=>"Không tồn tại bình luận"]);   
+
+            }
+            if(auth()->user()->phan_quyen_id==2)
+            {
+                return back()->withErrors(['failed'=>"Không tồn tại bình luận"]);
+
+            }
+            if(auth()->user()->phan_quyen_id==3)
+            {
+                return back()->withErrors(['failed'=>"Không tồn tại bình luận"]);
+
+            }
         }
         if($cmt->tai_khoan_id!=auth()->user()->id)
         {

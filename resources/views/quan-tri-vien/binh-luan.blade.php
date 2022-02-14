@@ -22,6 +22,9 @@
     <h5 class="card-header">  
     {{$gv->ho_ten }} đã đăng một {{$post->loaiPost->loai_post}} mới: {{$post->tieu_de}}</h5>
     <p class="card-body" >{{$post->noi_dung}}</p>
+    @if($post->file!=null)
+    <a class="card-footer" href="{{url('/file', $post->file)}}" download>Tải về</a>
+    @endif
     <a class="btn btn-success btn-fw" href="{{route('tao-binh-luan', ['id' => $post->id])}}">Binh Luận</a>
   </div>
 
