@@ -447,12 +447,11 @@ class TaiKhoanController extends Controller
         {
             return back()->withErrors(['failed'=>"Đây không phải email sinh viên"]);
         }
-        $tg= ThamGia::where('tai_khoan_id',$sv->id)->first();
+        $tg= ThamGia::where('tai_khoan_id',$sv->id)->where('lop_id',$lop->id)->first();
         if($tg==null)
         {
             return back()->withErrors(['failed'=>"Sinh viên không học tại lớp"]);
         }
-        
         return view('giao-vien/search-sinh-vien', compact('sv','lop'));
     }
 }

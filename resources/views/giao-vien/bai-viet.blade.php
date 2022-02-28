@@ -30,7 +30,11 @@
     @endphp
     <h5 class="card-header">  
     {{$gv->ho_ten }} đã đăng một {{$ds->loaiPost->loai_post}} mới: {{$ds->tieu_de}}</h5>
+    
     <p class="card-body" >{{$ds->noi_dung}}</p>
+    @if($ds->file!=null)
+    <a class="card-footer" href="{{url('/file', $ds->file)}}" download>Tải về</a>
+    @endif
     <div class="dropdown">
                         <button class="btn btn-success btn-fw" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Chức năng </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
