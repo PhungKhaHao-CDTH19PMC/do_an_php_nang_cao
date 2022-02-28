@@ -12,7 +12,7 @@
 @csrf
   <div class="form-group">
   <label for="noidung">Nội dung</label>
-  <textarea class="form-control" rows="10" name="noi_dung">{{$cmt->noi_dung}}</textarea>
+  <textarea class="form-control" rows="10" name="noi_dung" required>{{$cmt->noi_dung}}</textarea>
 </div>
  
   <button type="submit" class="btn btn-primary">Đăng</button>

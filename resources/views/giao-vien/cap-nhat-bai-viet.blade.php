@@ -24,12 +24,12 @@
 </div>
   <div class="form-group">
     <label for="tieude">Tiêu đề</label>
-    <input type="text" class="form-control" name="tieu_de" value="{{$post->tieu_de}}">
+    <input type="text" class="form-control" name="tieu_de" value="{{$post->tieu_de}}" required>
    
   </div>
   <div class="form-group">
   <label for="noidung">Nội dung</label>
-  <textarea class="form-control" rows="10" name="noi_dung">{{$post->noi_dung}}</textarea>
+  <textarea class="form-control" rows="10" name="noi_dung" required>{{$post->noi_dung}}</textarea>
 
 </div>
  <div class="form-group">
