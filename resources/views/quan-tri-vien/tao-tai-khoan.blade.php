@@ -30,7 +30,7 @@
                       </div>
                       <div class="form-group">
                         <label for="exampleInputUsername1">Password</label>
-                        <input type="text" class="form-control" id="exampleInputUsername1" name="password" placeholder="Password">
+                        <input type="password" class="form-control" id="exampleInputUsername1" name="password" placeholder="Password">
                         @error('password')
                           <span style="color:red;">{{$message}}</span>
                         @enderror

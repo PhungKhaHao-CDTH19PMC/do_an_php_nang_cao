@@ -31,22 +31,26 @@ class MailController extends Controller
         {
             return redirect()->back()->with('error','Email chưa được đăng kí!!');
         }
-            else{
-                $id=$taikhoan->id;
-                $token_random=Str::random(40);
-                $taikhoan=TaiKhoan::find($id);
-                $taikhoan->token=$token_random;
-                $taikhoan->save();
-                //send email notification
-                $to_email=$taikhoan->email;//gui den email nay 
-                $link_reset_password=url('/update-new-pass?email='.$to_email.'&token='.$token_random);
-                $data=array("name"=>$title_email,"body"=>$link_reset_password,'email'=>$data['email'],"hoten"=>$taikhoan->ho_ten);//body email
-                Mail::send('forgot-pass',['data'=>$data],function($message)use ($title_email,$data){
-                    $message->to($data['email'])->subject($title_email);
-                    $message->from($data['email'],"Elearning");
-                });
-                return redirect()->back()->with('message','Gửi thành công! Vui lòng kiểm tra email để đặt lại mật khẩu.');
-            }
+        else{
+            $id=$taikhoan->id;
+            $token_random=Str::random(40);
+            $taikhoan=TaiKhoan::find($id);
+            $taikhoan->token=$token_random;
+            $taikhoan->save();
+            //send email notification
+            $to_email=$taikhoan->email;//gui den email nay 
+            $link_reset_password=url('/update-new-pass?email='.$to_email.'&token='.$token_random);
+            $data=array(
+                "name"=>$title_email,
+                "body"=>$link_reset_password,
+                'email'=>$data['email'],
+                "hoten"=>$taikhoan->ho_ten);//body email
+            Mail::send('forgot-pass',['data'=>$data],function($message)use ($title_email,$data){
+                $message->to($data['email'])->subject($title_email);
+                $message->from($data['email'],"Elearning");
+            });
+            return redirect()->back()->with('message','Gửi thành công! Vui lòng kiểm tra email để đặt lại mật khẩu.');
+        }
         } 
        
 
