@@ -52,12 +52,17 @@
                                     @error('failed')
                                     <div class="alert alert-danger">{{$message}}</div>
                                     @enderror
+                                   
                                     @if (session('error'))
                                     <div class="alert alert-danger">
                                         {{ session('error') }}
                                     </div>
                                     @endif  
-                                    
+                                    @if (session('message'))
+                                    <div class="alert alert-success">
+                                        {{ session('message') }}
+                                    </div>
+                                    @endif  
                    
                                     <div class="form-group">
 			                        	<a style="float:left" href="{{route('gui-mail')}}">Quên mật khẩu?</a>

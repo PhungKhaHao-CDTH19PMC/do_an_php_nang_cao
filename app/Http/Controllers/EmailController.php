@@ -36,7 +36,7 @@ class EmailController extends Controller
         
         ];
        
-        // $data1=array("body"=>$tenlop->ten_lop);
+        
         Mail::send('email-template', $data, function($message) use ($data) {
           $message->to($data['email'])->subject($data['subject']);
           $message->from($data['email'],$data['name']);

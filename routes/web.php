@@ -40,9 +40,9 @@ Route::get('/gui-mail',[MailController::class, 'guiMail'])->name('gui-mail');
 Route::post('/revover-pass',[MailController::class, 'recoverPass'])->name('recover-pass');
 Route::get('/update-new-pass',[MailController::class, 'updateNewPass'])->name('update-new-pass');
 Route::post('/reset-new-pass',[MailController::class, 'resetNewPass'])->name('reset-new-pass');
-//gửi mail
-Route::get('/email/{id}', [EmailController::class, 'create']);
-Route::post('/email/{id}', [EmailController::class, 'sendEmail'])->name('send.email');
+
+
+
 
 Route::middleware('auth')->group(function(){
     Route::get('/tai-khoan/cap-nhat/{id}',[TaiKhoanController::class, 'formCapNhatTaiKhoan'])->name('cap-nhat-tai-khoan');
@@ -95,6 +95,7 @@ Route::group(['middleware' => ['auth','giaovien']], function () {
     Route::get('/giang-vien/xoa/bai-viet/{id}',[PostController::class, 'formXoaBaiViet'])->name('xoa-bai-viet');
     Route::post('/giang-vien/xoa/bai-viet/{id}',[PostController::class, 'xoaBaiViet'])->name('xl-xoa-bai-viet');
     Route::get('/danh-sach/nop-bai/{id}',[PostController::class, 'dsNopBai'])->name('ds-nop-bai');
+    
 });
 
 Route::group(['middleware' => ['auth','both']], function () {
@@ -110,4 +111,8 @@ Route::group(['middleware' => ['auth','quantrivien']], function () {
     Route::post('/tai_khoan-qtv/cap-nhat/{id}',[TaiKhoanController::class, 'capNhatTaiKhoanQtv'])->name('xl-cap-nhat-tai-khoan-qtv');
     Route::get('/tai-khoan-qtv/xoa/{id}',[TaiKhoanController::class, 'formXoaTaiKhoan'])->name('xoa-tai-khoan');
     Route::post('/tai_khoan-qtv/xoa/{id}',[TaiKhoanController::class, 'xoaTaiKhoan'])->name('xl-xoa-tai-khoan');
+    //gửi mail
+    Route::get('/email/{id}', [EmailController::class, 'create']);
+    Route::post('/email/{id}', [EmailController::class, 'sendEmail'])->name('send.email'); 
+    
 });
